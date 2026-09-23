@@ -17,7 +17,7 @@ Dalam repositori ini terdapat implementasi dalam **4 bahasa pemrograman**:
 - 🟦 **C++**
 - 🐍 **Python**
 - ☕ **Java**
-- 🐘 **PHP** (Web interaktif dengan CSS modern, Form Input, dan Foto Produk)
+- 🐘 **PHP** (Web interaktif HTML murni, Form Input, dan Foto Produk)
 
 ### Ketentuan & Fitur Utama:
 - ✅ Memiliki **5 data objek awal default** pada `main` sebelum ada input user.
@@ -175,7 +175,6 @@ TP 2/
 │   ├── PerangkatKomputer.php
 │   ├── Laptop.php
 │   ├── index.php
-│   ├── style.css
 │   ├── images/
 │   │   ├── legion_pro_7i.png
 │   │   ├── rog_zephyrus_g16.png

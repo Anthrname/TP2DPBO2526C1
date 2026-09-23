@@ -100,178 +100,153 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tambah_laptop'])) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog Produk Laptop - Multilevel Inheritance PHP</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <span class="badge-header">Praktikum 2 DPBO 2026</span>
-            <h1>Sistem Manajemen Katalog Laptop</h1>
-            <p class="subtitle">Implementasi Konsep OOP <strong>Multilevel Inheritance</strong> (ProdukElektronik &rarr; PerangkatKomputer &rarr; Laptop)</p>
-        </header>
+    <h2>Sistem Manajemen Katalog Laptop</h2>
+    <p>Implementasi Konsep OOP <b>Multilevel Inheritance</b> (ProdukElektronik &rarr; PerangkatKomputer &rarr; Laptop)</p>
+    <hr>
 
-        <?php if (!empty($notifSuccess)): ?>
-            <div class="alert-success">
-                <span>&#10004;</span>
-                <div><?php echo $notifSuccess; ?></div>
-            </div>
-        <?php endif; ?>
+    <?php if (!empty($notifSuccess)): ?>
+        <p><b>[SUKSES]</b> <?php echo $notifSuccess; ?></p>
+    <?php endif; ?>
 
-        <?php if (!empty($notifError)): ?>
-            <div class="alert-error" style="background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: #fca5a5; padding: 1rem 1.5rem; border-radius: 12px; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-weight: 500;">
-                <span>&#9888;</span>
-                <div><?php echo $notifError; ?></div>
-            </div>
-        <?php endif; ?>
+    <?php if (!empty($notifError)): ?>
+        <p><b>[ERROR]</b> <?php echo $notifError; ?></p>
+    <?php endif; ?>
 
-        <div class="grid-layout">
-            <!-- Form Tambah Laptop Baru -->
-            <section class="card">
-                <div class="card-title-bar">
-                    <h2 class="card-title">Tambah Produk Laptop Baru</h2>
-                </div>
-                <form action="index.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="idProduk">ID Produk (ProdukElektronik)</label>
-                            <input type="text" id="idProduk" name="idProduk" placeholder="Contoh: LP-006" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nama">Nama Produk (ProdukElektronik)</label>
-                            <input type="text" id="nama" name="nama" placeholder="Contoh: Razer Blade 16" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="brand">Brand / Merk (ProdukElektronik)</label>
-                            <select id="brand" name="brand" required>
-                                <option value="Lenovo">Lenovo</option>
-                                <option value="ASUS">ASUS</option>
-                                <option value="Apple">Apple</option>
-                                <option value="Dell">Dell</option>
-                                <option value="Acer">Acer</option>
-                                <option value="Razer">Razer</option>
-                                <option value="MSI">MSI</option>
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="harga">Harga (ProdukElektronik)</label>
-                            <input type="number" id="harga" name="harga" placeholder="Contoh: 52000000" min="1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="processor">Processor (PerangkatKomputer)</label>
-                            <input type="text" id="processor" name="processor" placeholder="Contoh: Intel Core i9-14900HX" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="ram">RAM (PerangkatKomputer)</label>
-                            <input type="text" id="ram" name="ram" placeholder="Contoh: 32GB DDR5 5600MHz" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="storage">Storage / SSD (PerangkatKomputer)</label>
-                            <input type="text" id="storage" name="storage" placeholder="Contoh: 2TB NVMe PCIe 4.0 SSD" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="layar">Layar (Laptop)</label>
-                            <input type="text" id="layar" name="layar" placeholder="Contoh: 16.0 Dual-Mode Mini-LED" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="baterai">Baterai (Laptop)</label>
-                            <input type="text" id="baterai" name="baterai" placeholder="Contoh: 95.2 Wh" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="berat">Bobot / Berat (Laptop)</label>
-                            <input type="text" id="berat" name="berat" placeholder="Contoh: 2.45 kg" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="fotoProduk">Pilihan Foto Default (Khusus PHP)</label>
-                            <select id="fotoProduk" name="fotoProduk">
-                                <option value="razer_blade_16.png">Razer Blade 16 (Preset)</option>
-                                <option value="msi_titan_18.png">MSI Titan 18 (Preset)</option>
-                                <option value="legion_pro_7i.png">Lenovo Legion (Preset)</option>
-                                <option value="rog_zephyrus_g16.png">ROG Zephyrus (Preset)</option>
-                                <option value="macbook_pro_16.png">MacBook Pro (Preset)</option>
-                                <option value="dell_xps_14.png">Dell XPS (Preset)</option>
-                                <option value="predator_helios_16.png">Predator Helios (Preset)</option>
-                                <option value="default.png" selected>Default Placeholder</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fotoFile">Atau Upload Gambar Baru (Opsional)</label>
-                            <input type="file" id="fotoFile" name="fotoFile" accept="image/*">
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" name="tambah_laptop" class="btn btn-primary">+ Tambahkan Data Laptop</button>
-                        <a href="index.php?action=reset" class="btn btn-secondary">Reset ke 5 Data Awal</a>
-                    </div>
-                </form>
-            </section>
+    <h3>Tambah Produk Laptop Baru</h3>
+    <form action="index.php" method="POST" enctype="multipart/form-data">
+        <table border="0" cellpadding="4">
+            <tr>
+                <td><label for="idProduk">ID Produk (ProdukElektronik)</label></td>
+                <td>: <input type="text" id="idProduk" name="idProduk" placeholder="Contoh: LP-006" required></td>
+            </tr>
+            <tr>
+                <td><label for="nama">Nama Produk (ProdukElektronik)</label></td>
+                <td>: <input type="text" id="nama" name="nama" placeholder="Contoh: Razer Blade 16" required></td>
+            </tr>
+            <tr>
+                <td><label for="brand">Brand / Merk (ProdukElektronik)</label></td>
+                <td>: 
+                    <select id="brand" name="brand" required>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="ASUS">ASUS</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Razer">Razer</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="harga">Harga (ProdukElektronik)</label></td>
+                <td>: <input type="number" id="harga" name="harga" placeholder="Contoh: 52000000" min="1" required></td>
+            </tr>
+            <tr>
+                <td><label for="processor">Processor (PerangkatKomputer)</label></td>
+                <td>: <input type="text" id="processor" name="processor" placeholder="Contoh: Intel Core i9-14900HX" required></td>
+            </tr>
+            <tr>
+                <td><label for="ram">RAM (PerangkatKomputer)</label></td>
+                <td>: <input type="text" id="ram" name="ram" placeholder="Contoh: 32GB DDR5 5600MHz" required></td>
+            </tr>
+            <tr>
+                <td><label for="storage">Storage / SSD (PerangkatKomputer)</label></td>
+                <td>: <input type="text" id="storage" name="storage" placeholder="Contoh: 2TB NVMe PCIe 4.0 SSD" required></td>
+            </tr>
+            <tr>
+                <td><label for="layar">Layar (Laptop)</label></td>
+                <td>: <input type="text" id="layar" name="layar" placeholder="Contoh: 16.0 Dual-Mode Mini-LED" required></td>
+            </tr>
+            <tr>
+                <td><label for="baterai">Baterai (Laptop)</label></td>
+                <td>: <input type="text" id="baterai" name="baterai" placeholder="Contoh: 95.2 Wh" required></td>
+            </tr>
+            <tr>
+                <td><label for="berat">Bobot / Berat (Laptop)</label></td>
+                <td>: <input type="text" id="berat" name="berat" placeholder="Contoh: 2.45 kg" required></td>
+            </tr>
+            <tr>
+                <td><label for="fotoProduk">Pilihan Foto Preset</label></td>
+                <td>: 
+                    <select id="fotoProduk" name="fotoProduk">
+                        <option value="razer_blade_16.png">Razer Blade 16 (Preset)</option>
+                        <option value="msi_titan_18.png">MSI Titan 18 (Preset)</option>
+                        <option value="legion_pro_7i.png">Lenovo Legion (Preset)</option>
+                        <option value="rog_zephyrus_g16.png">ROG Zephyrus (Preset)</option>
+                        <option value="macbook_pro_16.png">MacBook Pro (Preset)</option>
+                        <option value="dell_xps_14.png">Dell XPS (Preset)</option>
+                        <option value="predator_helios_16.png">Predator Helios (Preset)</option>
+                        <option value="default.png" selected>Default Placeholder</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="fotoFile">Atau Upload Gambar Baru</label></td>
+                <td>: <input type="file" id="fotoFile" name="fotoFile" accept="image/*"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <br>
+                    <input type="submit" name="tambah_laptop" value="Tambah Data Laptop">
+                    <a href="index.php?action=reset"><button type="button">Reset ke 5 Data Awal</button></a>
+                </td>
+            </tr>
+        </table>
+    </form>
 
-            <!-- Tabel Data Laptop Dinamis -->
-            <section class="card">
-                <div class="card-title-bar">
-                    <h2 class="card-title">Daftar Lengkap Produk Laptop (Multilevel Inheritance)</h2>
-                    <span class="badge-count">Total: <?php echo count($daftarLaptop); ?> Laptop</span>
-                </div>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Foto Produk</th>
-                                <th>ID Produk</th>
-                                <th>Nama Produk</th>
-                                <th>Brand</th>
-                                <th>Harga</th>
-                                <th>Processor</th>
-                                <th>RAM</th>
-                                <th>Storage</th>
-                                <th>Layar</th>
-                                <th>Baterai</th>
-                                <th>Berat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($daftarLaptop as $index => $laptop): ?>
-                                <tr>
-                                    <td><?php echo $index + 1; ?></td>
-                                    <td>
-                                        <img src="images/<?php echo htmlspecialchars($laptop->getFotoProduk()); ?>" 
-                                             alt="<?php echo htmlspecialchars($laptop->getNama()); ?>" 
-                                             class="product-img"
-                                             onerror="this.src='images/default.png';">
-                                    </td>
-                                    <td><code><?php echo htmlspecialchars($laptop->getIdProduk()); ?></code></td>
-                                    <td><strong><?php echo htmlspecialchars($laptop->getNama()); ?></strong></td>
-                                    <td>
-                                        <?php 
-                                            $brandClass = in_array($laptop->getBrand(), ['Lenovo', 'ASUS', 'Apple', 'Dell', 'Acer', 'Razer', 'MSI']) 
-                                                ? $laptop->getBrand() 
-                                                : 'default';
-                                        ?>
-                                        <span class="badge-brand <?php echo $brandClass; ?>">
-                                            <?php echo htmlspecialchars($laptop->getBrand()); ?>
-                                        </span>
-                                    </td>
-                                    <td class="price-tag"><?php echo formatRupiah($laptop->getHarga()); ?></td>
-                                    <td><span class="spec-pill"><?php echo htmlspecialchars($laptop->getProcessor()); ?></span></td>
-                                    <td><span class="spec-pill"><?php echo htmlspecialchars($laptop->getRam()); ?></span></td>
-                                    <td><span class="spec-pill"><?php echo htmlspecialchars($laptop->getStorage()); ?></span></td>
-                                    <td><span class="spec-pill"><?php echo htmlspecialchars($laptop->getUkuranLayar()); ?></span></td>
-                                    <td><span class="spec-pill"><?php echo htmlspecialchars($laptop->getKapasitasBaterai()); ?></span></td>
-                                    <td><span class="spec-pill"><?php echo htmlspecialchars($laptop->getBerat()); ?></span></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
+    <hr>
 
-        <footer>
-            <p>Tugas Praktikum 2 &copy; 2026 - Desain Pemrograman Berorientasi Objek (DPBO)</p>
-        </footer>
-    </div>
+    <h3>Daftar Lengkap Produk Laptop (Multilevel Inheritance)</h3>
+    <p>Total: <?php echo count($daftarLaptop); ?> Laptop</p>
+
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr bgcolor="#f0f0f0">
+                <th>No</th>
+                <th>Foto Produk</th>
+                <th>ID Produk</th>
+                <th>Nama Produk</th>
+                <th>Brand</th>
+                <th>Harga</th>
+                <th>Processor</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>Layar</th>
+                <th>Baterai</th>
+                <th>Berat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($daftarLaptop as $index => $laptop): ?>
+                <tr>
+                    <td align="center"><?php echo $index + 1; ?></td>
+                    <td align="center">
+                        <img src="images/<?php echo htmlspecialchars($laptop->getFotoProduk()); ?>" 
+                             alt="<?php echo htmlspecialchars($laptop->getNama()); ?>" 
+                             width="80"
+                             onerror="this.src='images/default.png';">
+                    </td>
+                    <td><?php echo htmlspecialchars($laptop->getIdProduk()); ?></td>
+                    <td><b><?php echo htmlspecialchars($laptop->getNama()); ?></b></td>
+                    <td><?php echo htmlspecialchars($laptop->getBrand()); ?></td>
+                    <td><?php echo formatRupiah($laptop->getHarga()); ?></td>
+                    <td><?php echo htmlspecialchars($laptop->getProcessor()); ?></td>
+                    <td><?php echo htmlspecialchars($laptop->getRam()); ?></td>
+                    <td><?php echo htmlspecialchars($laptop->getStorage()); ?></td>
+                    <td><?php echo htmlspecialchars($laptop->getUkuranLayar()); ?></td>
+                    <td><?php echo htmlspecialchars($laptop->getKapasitasBaterai()); ?></td>
+                    <td><?php echo htmlspecialchars($laptop->getBerat()); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <hr>
+    <p>Tugas Praktikum 2 &copy; 2026 - Desain Pemrograman Berorientasi Objek (DPBO)</p>
 </body>
 </html>

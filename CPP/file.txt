@@ -1,0 +1,25 @@
+1
+2
+LP-006
+Razer Blade 16
+Razer
+52000000
+Intel Core i9-14900HX
+32GB DDR5 5600MHz
+2TB NVMe PCIe 4.0 SSD
+16.0 Dual-Mode Mini-LED
+95.2 Wh
+2.45 kg
+2
+LP-007
+MSI Titan 18 HX
+MSI
+65000000
+Intel Core i9-14900HX
+64GB DDR5 5600MHz
+4TB NVMe PCIe SSD
+18.0 UHD+ 120Hz Mini-LED
+99.9 Wh
+3.60 kg
+1
+3

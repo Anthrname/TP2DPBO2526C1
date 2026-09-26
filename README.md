@@ -187,9 +187,8 @@ TP 2/
 │   └── file.txt
 ├── Dokumentasi/
 │   ├── class_diagram.png
-│   ├── cpp_demo.png
-│   ├── python_demo.png
-│   ├── java_demo.png
+│   ├── terminal_tampil_data.png
+│   ├── terminal_tambah_data.png
 │   └── php_demo.png
 ├── .gitignore
 └── README.md
@@ -257,14 +256,17 @@ Buka browser pada tautan: `http://localhost:8000/index.php`.
 
 ## 📸 DOKUMENTASI HASIL EKSEKUSI
 
-### 🟦 C++ Terminal Output
-![C++ Output](Dokumentasi/cpp_demo.png)
+### 1. 🖥️ Tampilan Katalog Data Awal (Tabel Dinamis CLI)
+Menampilkan 5 data laptop default pada tabel dinamis CLI yang rapi dan responsif:
+![Tampilan Tabel Katalog Data Awal](Dokumentasi/terminal_tampil_data.png)
 
-### 🐍 Python Terminal Output
-![Python Output](Dokumentasi/python_demo.png)
+### 2. ➕ Form Tambah Data Baru & Validasi Error Handling (CLI)
+Menampilkan proses interaktif penambahan data baru, pengujian validasi harga (*error handling* saat input harga bukan angka positif), dan notifikasi sukses penambahan data:
+![Tambah Data dan Validasi Error CLI](Dokumentasi/terminal_tambah_data.png)
 
-### ☕ Java Terminal Output
-![Java Output](Dokumentasi/java_demo.png)
-
-### 🐘 PHP Web Application UI
+### 3. 🐘 Antarmuka Pengguna Aplikasi Web (PHP)
+Menampilkan halaman web interaktif dengan form penambahan produk dan tabel katalog produk laptop:
 ![PHP Web Demo](Dokumentasi/php_demo.png)
+
+
+
